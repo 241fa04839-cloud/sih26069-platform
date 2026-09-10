@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+Sitemap: https://weather-analytics.gov.in/sitemap.xml
+
+Host: https://weather-analytics.gov.in

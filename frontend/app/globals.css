@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0B0F17;
+  --foreground: #E5E7EB;
+  --panel: #111827;
+  --border: #1F2937;
+  --amber: #F59E0B;
+  --crimson: #EF4444;
+  --cyan: #06B6D4;
+  --green: #10B981;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background-color: #0B0F17;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border: 1px solid #374151;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Tactical grid overlay */
+.tactical-grid {
+  background-image: 
+    linear-gradient(rgba(31, 41, 55, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 41, 55, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glitch effect for critical indicators */
+@keyframes glitch {
+  0%, 100% { opacity: 1; }
+  20% { opacity: 0.8; text-shadow: -2px 0 var(--crimson), 2px 0 var(--cyan); }
+  40% { opacity: 1; }
+  60% { opacity: 0.9; text-shadow: 2px 0 var(--amber), -2px 0 var(--cyan); }
+  80% { opacity: 1; }
+}
+
+.glitch-text {
+  animation: glitch 2s infinite;
+}
+
+/* Scanline */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Ticker animation */
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-content {
+  display: inline-block;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+/* Cesium container */
+.cesium-container {
+  width: 100%;
+  height: 100%;
+  background: #0B0F17;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* Hide scrollbar for ticker */
+.ticker-hide-scrollbar::-webkit-scrollbar { display: none; }
+.ticker-hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
